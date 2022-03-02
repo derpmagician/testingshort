@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Shorten</title>
+</head>
+<body>
+    <main class="flex items-center justify-center h-screen bg-blue-100">
+      <div class="bg-white rounded-2xl border shadow-xl p-10 max-w-lg">
+        <div class="flex flex-col items-center space-y-4">
+          <h1 class="font-bold text-2xl text-gray-700 w-4/6 text-center">Welcome to Shorten</h1>
+          <p class="text-sm text-gray-500 text-center w-5/6">Welcome to our URL Shortener.</p>
+          <label class="text-gray-700">URL to be shortened</label>
+          <input type="url" placeholder="Insert URL" name="longUrl" id="fullUrl" class="border-2 rounded-lg w-full h-12 px-4">
+          <div class="bg-blue-400 text-white rounded-md font-semibold px-4 py-3 w-full" onClick="geturl()">Click here to shorten URL</div>
+          <br>
+        </div>
+        <div class="flex flex-col items-center space-y-4">
+          <label class="text-gray-700">URL Generated</label>
+          <div class="flex items-center border-2 rounded-lg w-full h-12 px-4">
+            <p class="text-center text-gray-400" id="short">URL Shortenedsss</p>
+          </div>
+          <!-- <button class="bg-blue-400 text-white rounded-md font-semibold px-4 py-4 w-full" onClick="copyToClipboard('short')">Copy URL</button> -->
+        </div>
+      </div>
+    </main>
+  <script>
+    const geturl = (e) => {
+      const arg = $("#fullUrl").val();
+      console.log(arg);
+      const parametros = {
+        longUrl: arg,
+      };
+      axios.post("http://localhost:3000/api/urls/shorten", parametros)
+      .then(function(res) {
+        const shortEle = document.getElementById("short");
+        const data = res.data;
+        const html = `<p onclick="copyText()" class="text-gray-700">${data.shortUrl}</p>`
+        shortEle.innerHTML  = html;
+        navigator.clipboard.writeText(data.shortUrl);
+    })
+    .catch(function(err) {});
+    
+      e.preventDefault();
+    };
+  </script>
+</body>
+</html>
