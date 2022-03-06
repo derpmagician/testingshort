@@ -21,7 +21,7 @@ router.get('/shorten', async (req, res) => {
 // User post the long url
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
-  const baseUrl = "https://testingshort-9v9173kah-derpmagician.vercel.app/";
+  const baseUrl = "https://testingshort.vercel.app/";
 
 
   // Check base url
