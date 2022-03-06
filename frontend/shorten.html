@@ -37,7 +37,7 @@
       const parametros = {
         longUrl: arg,
       };
-      axios.post("https://testingshort.vercel.app/api/urls/shorten", parametros)
+      axios.post("/api/urls/shorten", parametros)
       .then(function(res) {
         const shortEle = document.getElementById("short");
         const data = res.data;
