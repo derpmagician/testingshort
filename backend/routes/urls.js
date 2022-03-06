@@ -21,7 +21,7 @@ router.get('/shorten', async (req, res) => {
 // User post the long url
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://testingshort-9v9173kah-derpmagician.vercel.app/";
 
 
   // Check base url
