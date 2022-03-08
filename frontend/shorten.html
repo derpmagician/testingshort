@@ -44,6 +44,7 @@
       axios.post("api/urls/shorten", params)
       .then(function(res) {
         const shortEle = document.getElementById("short");
+        console.log(shortEle)
         const msgEle = $('#msg');
         const data = res.data;
         const html = `<p onclick="copyText()" class="text-gray-700 font-semibold px-4 py-4">${data.shortUrl}</p>`
