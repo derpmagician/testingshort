@@ -41,7 +41,7 @@
       const params = {
         longUrl: fullUrlEle,
       };
-      axios.post("http://localhost:3000/api/urls/shorten", params)
+      axios.post("api/urls/shorten", params)
       .then(function(res) {
         const shortEle = document.getElementById("short");
         const msgEle = $('#msg');
